@@ -252,6 +252,9 @@ describe('testReporter', function() {
             assert.ok(Object.keys(module).includes('startTimestamp'));
             assert.ok(Object.keys(module).includes('endTimestamp'));
             assert.ok(Object.keys(module).includes('host'));
+            assert.ok(Object.keys(module).includes('name'));
+            assert.ok(Object.keys(module).includes('tags'));
+
             // check for individual test properties
             const test = module.completed['demoTest'];
             assert.ok(Object.keys(test).includes('status'));
@@ -318,6 +321,12 @@ describe('testReporter', function() {
             assert.ok(Object.keys(command).includes('result'));
             assert.deepEqual(command.args, ['http://localhost']);
             assert.strictEqual(command.status, 'pass');
+
+            const hook = completedSections['demoTest'];
+            assert.ok(Object.keys(hook).includes('startTimestamp'));
+            assert.ok(Object.keys(hook).includes('endTimestamp'));
+            assert.ok(Object.keys(hook).includes('httpOutput'));
+            
           }
         },
         silent: true,
